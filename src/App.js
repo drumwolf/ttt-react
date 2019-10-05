@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
+import TTTGrid from './TTTGrid';
 
 class App extends Component {
+  state = {
+    squares: ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X']
+  }
   render() {
     return (
       <main className="md">
-        <div className="TTT-grid">
-          <div className="TTT-box"><span className="TTT-char">O</span></div>
-          <div className="TTT-box"><span className="TTT-char">X</span></div>
-          <div className="TTT-box"><span className="TTT-char">O</span></div>
-          <div className="TTT-box"><span className="TTT-char">X</span></div>
-          <div className="TTT-box"><span className="TTT-char">O</span></div>
-          <div className="TTT-box"><span className="TTT-char">X</span></div>
-          <div className="TTT-box"><span className="TTT-char">O</span></div>
-          <div className="TTT-box"><span className="TTT-char">X</span></div>
-          <div className="TTT-box"><span className="TTT-char">O</span></div>
-        </div>
+        <TTTGrid squares={this.state.squares} />
       </main>
     )
   }
