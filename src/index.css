@@ -13,6 +13,9 @@ main {
   margin: 40px auto;
   width: 300px;
 }
+.disabled {
+  pointer-events: none;
+}
 .TTT-grid {
   background-color: #333;
   border: solid 1px #CCC;

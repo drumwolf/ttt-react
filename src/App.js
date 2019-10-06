@@ -3,19 +3,32 @@ import TTTGrid from './TTTGrid';
 
 class App extends Component {
   state = {
-    squares: Array(9).fill('')
+    moveCount: 0,
+    squares: Array(9).fill(''),
+    userMoves: true
+  }
+  componentDidUpdate() {
+    this.nextMove();
   }
   onSquareClick(index) {
     if (this.state.squares[index] === '') {
-      const squares = this.state.squares.slice();
-      squares[index] = 'X';
-      this.setState({ squares: squares });
+      const moveCount = this.state.moveCount + 1;
+      const squares   = this.state.squares.slice();
+      const userMoves = !(this.state.userMoves);
+      squares[index]  = 'X';
+      this.setState({ moveCount, squares, userMoves });
+    }
+  }
+  nextMove(squares) {
+    if (!this.state.userMoves) {
+      console.log("App's turn to move - this state: ", this.state);
     }
   }
   render() {
     return (
       <main className="md">
         <TTTGrid
+          clickable={this.state.userMoves}
           squares={this.state.squares}
           onSquareClick={this.onSquareClick.bind(this)} />
       </main>

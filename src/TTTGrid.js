@@ -9,16 +9,19 @@ class TTTGrid extends Component {
     this.props.onSquareClick(e.target.dataset.index);
   }
   render() {
-    const squares = [];
-    for (let i in this.props.squares) {
+    const squares = [],
+          classList = ['TTT-grid'],
+          onSquareClick = this.onSquareClick.bind(this);
+    if (!this.props.clickable) { classList.push('disabled'); }
+    this.props.squares.forEach( (char, index) => {
       squares.push(<TTTSquare
-        char={this.props.squares[i]}
-        onSquareClick={this.onSquareClick.bind(this)}
-        key={i}
-        index={i} />);
-    }
+        char={char}
+        onSquareClick={onSquareClick}
+        key={index}
+        index={index} />);
+    });
     return (
-      <div className="TTT-grid">{squares}</div>
+      <div className={classList.join(' ')}>{squares}</div>
     );
   }
 }
