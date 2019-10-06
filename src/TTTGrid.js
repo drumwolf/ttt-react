@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
+import TTTSquare from './TTTSquare';
 
 class TTTGrid extends Component {
-  constructor(props) {
-  	super(props);
-  }
   render() {
-  	const squares = [];
-  	for (let i in this.props.squares) {
-  	  const char = this.props.squares[i];
-  	  squares.push(<div className="TTT-box"><span className="TTT-char">{char}</span></div>);
-  	}
+    const squares = [];
+    for (let i in this.props.squares) {
+      squares.push(<TTTSquare char={this.props.squares[i]} />);
+    }
     return (
       <div className="TTT-grid">{squares}</div>
     );

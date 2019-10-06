@@ -3,7 +3,7 @@ import TTTGrid from './TTTGrid';
 
 class App extends Component {
   state = {
-    squares: ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X']
+    squares: Array(9).fill('')
   }
   render() {
     return (
