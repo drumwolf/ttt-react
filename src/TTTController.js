@@ -30,7 +30,7 @@ class TTTController {
   }
   nextMove() {
     let defenseIndex = null;
-    for (let i = 0, XCount, OCount, emptyCount, emptyIndex; i < this.combinations.length; i++) {
+    for (let i = 0; i < this.combinations.length; i++) {
       let XCount = 0, OCount = 0, emptyCount = 0, emptyIndex = null;
       this.combinations[i].forEach( index => {
         if (this.squares[index] === 'X') { XCount++; }

@@ -11,16 +11,14 @@ class App extends Component {
   controller = new TTTController();
 
   componentDidUpdate() {
-    this.appMoves();
+    if (!this.state.usersTurn) { this.appMoves(); }
   }
-  appMoves(squares) {
-    if (!this.state.usersTurn) {
-      const moveCount = this.state.moveCount;
-      const squares   = this.state.squares.slice();
-      const newIndex = this.controller.move(moveCount, squares);
-      squares[newIndex] = 'O';
-      setTimeout( () => this.setState({ squares, usersTurn: true }), 500);
-    }
+  appMoves() {
+    const moveCount = this.state.moveCount;
+    const squares   = this.state.squares.slice();
+    const newIndex = this.controller.move(moveCount, squares);
+    squares[newIndex] = 'O';
+    setTimeout( () => this.setState({ squares, usersTurn: true }), 500);
   }
   userMoves(index) {
     if (this.state.squares[index] === '') {
