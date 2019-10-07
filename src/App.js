@@ -6,33 +6,40 @@ class App extends Component {
   state = {
     moveCount: 0,
     squares: Array(9).fill(''),
-    usersTurn: true
+    isUsersTurn: true,
+    winningRow: null
   }
   controller = new TTTController();
 
   componentDidUpdate() {
-    if (!this.state.usersTurn) { this.appMoves(); }
+    // check if winning row exists
+    if (this.state.moveCount >= 3) {
+      this.winningRow = this.controller.getWinningRow(this.state.squares);
+    }
+    if (!this.state.isUsersTurn) {
+      this.appMoves();
+    }
   }
   appMoves() {
     const moveCount = this.state.moveCount;
     const squares   = this.state.squares.slice();
     const newIndex = this.controller.move(moveCount, squares);
     squares[newIndex] = 'O';
-    setTimeout( () => this.setState({ squares, usersTurn: true }), 500);
+    setTimeout( () => this.setState({ squares, isUsersTurn: true }), 500);
   }
   userMoves(index) {
     if (this.state.squares[index] === '') {
       const moveCount = this.state.moveCount + 1;
       const squares   = this.state.squares.slice();
       squares[index]  = 'X';
-      this.setState({ moveCount, squares, usersTurn: false });
+      this.setState({ moveCount, squares, isUsersTurn: false });
     }
   }
   render() {
     return (
       <main className="md">
         <TTTGrid
-          clickable={this.state.usersTurn}
+          clickable={this.state.isUsersTurn}
           squares={this.state.squares}
           onSquareClick={this.userMoves.bind(this)} />
       </main>

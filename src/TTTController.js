@@ -1,7 +1,7 @@
 class TTTController {
   // each value represents an index of of TTT square
   corners = [0, 2, 6, 8];
-  combinations = [
+  rows = [
     [0, 1, 2],
     [0, 3, 6],
     [0, 4, 8],
@@ -30,9 +30,9 @@ class TTTController {
   }
   nextMove() {
     let defenseIndex = null;
-    for (let i = 0; i < this.combinations.length; i++) {
+    for (let i = 0; i < this.rows.length; i++) {
       let XCount = 0, OCount = 0, emptyCount = 0, emptyIndex = null;
-      this.combinations[i].forEach( index => {
+      this.rows[i].forEach( index => {
         if (this.squares[index] === 'X') { XCount++; }
         if (this.squares[index] === 'O') { OCount++; }
         if (this.squares[index] === '') { emptyCount++; emptyIndex = index; }
@@ -53,6 +53,17 @@ class TTTController {
     const random = Math.floor( Math.random() * availableCorners.length );
     return this.corners[random];
   }
+
+  getWinningRow(squares) {
+    for (let i = 0, row; i < this.rows.length; i++) {
+      row = this.rows[i].map( index => squares[index] );
+      if (row[0] !== '' && row[0] === row[1] && row[1] === row[2] ) {
+        return this.rows[i];
+      }
+    }
+    return null;
+  }
+
 }
 
 export default TTTController;
