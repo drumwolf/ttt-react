@@ -12,10 +12,17 @@ class TTTController {
     [6, 7, 8]
   ];
 
-  move(moveCount, squares) {
+  /*** determine which square the app will select, and return the square's index ***/
+  getMove(moveCount, squares) {
     this.squares = squares;
     this.center  = squares[4];
     return (moveCount === 1) ? this.firstMove() : this.nextMove();
+  }
+  // second-level auxiliary methods to be called (directly or not) by 'getMove()'
+  cornerMove() {
+    const cornerMoves = this.corners.filter( index => this.squares[index] === '' );
+    const random = Math.floor( Math.random() * cornerMoves.length );
+    return this.corners[random];
   }
   defaultMove() {
     const indices = [];
@@ -26,7 +33,7 @@ class TTTController {
     return indices[random];
   }
   firstMove() {
-    return (this.center === '') ? 4 : this.availableCorner();
+    return (this.center === '') ? 4 : this.cornerMove();
   }
   nextMove() {
     let defenseIndex = null;
@@ -48,12 +55,8 @@ class TTTController {
     }
     return (defenseIndex) ? defenseIndex : this.defaultMove();
   }
-  availableCorner() {
-    const availableCorners = this.corners.filter( index => this.squares[index] === '' );
-    const random = Math.floor( Math.random() * availableCorners.length );
-    return this.corners[random];
-  }
 
+  /*** determine if there is a winning row, and if so, return an array of its indices ***/
   getWinningRow(squares) {
     for (let i = 0, row; i < this.rows.length; i++) {
       row = this.rows[i].map( index => squares[index] );
