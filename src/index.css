@@ -69,3 +69,9 @@ main {
 .lg .TTT-char {
   font-size: 125px;
 }
+.TTT-winning-square-O {
+  background-color: #c99;
+}
+.TTT-winning-square-X {
+  background-color: #9cc;
+}

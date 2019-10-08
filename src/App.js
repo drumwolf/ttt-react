@@ -13,11 +13,14 @@ class App extends Component {
 
   componentDidUpdate() {
     // check if winning row exists
-    if (this.state.moveCount >= 3) {
-      this.winningRow = this.controller.getWinningRow(this.state.squares);
-    }
-    if (!this.state.isUsersTurn) {
-      this.appMoves();
+    if (!this.state.winningRow) {
+      if (this.state.moveCount >= 3) {
+        const winningRow = this.controller.getWinningRow(this.state.squares);
+        if (winningRow) { this.setState({ winningRow }) };
+      }
+      if (!this.state.isUsersTurn) {
+        this.appMoves();
+      }
     }
   }
   appMoves() {
@@ -39,9 +42,10 @@ class App extends Component {
     return (
       <main className="md">
         <TTTGrid
-          clickable={this.state.isUsersTurn}
+          clickable={this.state.isUsersTurn && !this.state.winningRow}
           squares={this.state.squares}
-          onSquareClick={this.userMoves.bind(this)} />
+          onSquareClick={this.userMoves.bind(this)}
+          winningRow={this.state.winningRow} />
       </main>
     )
   }

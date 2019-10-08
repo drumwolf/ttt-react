@@ -11,11 +11,13 @@ class TTTGrid extends Component {
   render() {
     const squares = [],
           classList = ['TTT-grid'],
-          onSquareClick = this.onSquareClick.bind(this);
-    if (!this.props.clickable) { classList.push('disabled'); }
+          onSquareClick = this.onSquareClick.bind(this),
+          winningRow = this.props.winningRow || [];
+       if (!this.props.clickable) { classList.push('disabled'); }
     this.props.squares.forEach( (char, index) => {
       squares.push(<TTTSquare
         char={char}
+        isWinningSquare={ winningRow.indexOf(index) !== -1 }
         onSquareClick={onSquareClick}
         key={index}
         index={index} />);
