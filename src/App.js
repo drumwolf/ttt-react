@@ -56,8 +56,7 @@ class App extends Component {
   }
   resizeGame(e) {
     e.preventDefault();
-    const size = e.target.dataset.size;
-    this.setState({ size });
+    this.setState({ size: e.target.dataset.size });
   }
   render() {
     return (
