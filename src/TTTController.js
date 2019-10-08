@@ -11,11 +11,16 @@ class TTTController {
     [3, 4, 5],
     [6, 7, 8]
   ];
+  squares = [];
+
+  /*** 'squares' will show what values 'X', 'O' or '' are in which squares ***/
+  setSquares(squares) {
+    this.squares = squares;
+  }
 
   /*** determine which square the app will select, and return the square's index ***/
-  getMove(moveCount, squares) {
-    this.squares = squares;
-    this.center  = squares[4];
+  getMove(moveCount) {
+    this.center  = this.squares[4];
     return (moveCount === 1) ? this.firstMove() : this.nextMove();
   }
   // second-level auxiliary methods to be called (directly or not) by 'getMove()'
@@ -59,7 +64,7 @@ class TTTController {
   /*** determine if there is a winning row, and if so, return an array of its indices ***/
   getWinningRow(squares) {
     for (let i = 0, row; i < this.rows.length; i++) {
-      row = this.rows[i].map( index => squares[index] );
+      row = this.rows[i].map( index => this.squares[index] );
       if (row[0] !== '' && row[0] === row[1] && row[1] === row[2] ) {
         return this.rows[i];
       }

@@ -15,12 +15,13 @@ class App extends Component {
   controller = new TTTController();
 
   componentDidUpdate() {
+    this.controller.setSquares(this.state.squares);
     // don't execute if there is a winning row or if grid is filled
     if (!this.state.winningRow && !this.state.isGridFilled) {
       let winningRow, emptySquareCount;
       // starting with 3rd set of moves, check to see if winning row
       if (this.state.moveCount >= 3) {
-        winningRow = this.controller.getWinningRow(this.state.squares);
+        winningRow = this.controller.getWinningRow();
         if (winningRow) { this.setState({ winningRow }) };
       }
       // starting with user's 5th move, check to see if grid is filled
@@ -37,7 +38,7 @@ class App extends Component {
   appMoves() {
     const moveCount = this.state.moveCount;
     const squares   = this.state.squares.slice();
-    const newIndex = this.controller.getMove(moveCount, squares);
+    const newIndex  = this.controller.getMove(moveCount);
     squares[newIndex] = 'O';
     setTimeout( () => this.setState({ squares, isUsersTurn: true }), 500);
   }
