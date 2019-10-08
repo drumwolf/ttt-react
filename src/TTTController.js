@@ -1,3 +1,13 @@
+/*
+This is not a React component.  It is essentially the "brain" of the app which will determine the following:
+- what square to pick when it moves
+- whether or not there is a winning row combination
+
+This class was designed with the following assumptions:
+- user player will move first, app player will move afterwards
+- user will be 'X', app will be 'O'
+
+*/
 class TTTController {
   // each value represents an index of of TTT square
   corners = [0, 2, 6, 8];

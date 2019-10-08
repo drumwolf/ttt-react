@@ -15,10 +15,10 @@ class App extends Component {
   controller = new TTTController();
 
   componentDidUpdate() {
-    this.controller.setSquares(this.state.squares);
-    // don't execute if there is a winning row or if grid is filled
+    /*** don't execute if there is a winning row or if grid is filled ***/
     if (!this.state.winningRow && !this.state.isGridFilled) {
       let winningRow, emptySquareCount;
+      this.controller.setSquares(this.state.squares);
       // starting with 3rd set of moves, check to see if winning row
       if (this.state.moveCount >= 3) {
         winningRow = this.controller.getWinningRow();
