@@ -75,3 +75,31 @@ main {
 .TTT-winning-square-X {
   background-color: #9cc;
 }
+
+/* menu items */
+.TTT-menu {
+  text-align: center;
+}
+.TTT-menu button {
+  border: 0;
+  cursor: pointer;
+  outline: none;
+}
+.TTT-reset {
+  border-radius: 5px;
+  background-color: #633;
+  color: #FFF;
+  font-size: 18px;
+  margin: 20px 0 10px;
+  padding: 4px 20px;
+}
+.TTT-reset:hover {
+  background-color: #933;
+}
+.TTT-resize {
+  font-weight: bold;
+  font-size: 14px;
+}
+.TTT-resize:hover {
+  color: red;
+}

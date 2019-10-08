@@ -11,7 +11,7 @@ class App extends Component {
     squares: Array(9).fill(''),
     winningRow: null
   };
-  state = this.defaultState;
+  state = {...this.defaultState, size: 'md' };
   controller = new TTTController();
 
   componentDidUpdate() {
@@ -52,16 +52,22 @@ class App extends Component {
     e.preventDefault();
     this.setState(this.defaultState);
   }
+  resizeGame(e) {
+    e.preventDefault();
+    const size = e.target.dataset.size;
+    this.setState({ size });
+  }
   render() {
     return (
-      <main className="md">
+      <main className={this.state.size}>
         <TTTGrid
           clickable={this.state.isUsersTurn && !this.state.winningRow && !this.state.isGridFilled}
           squares={this.state.squares}
           onSquareClick={this.userMoves.bind(this)}
           winningRow={this.state.winningRow} />
         <TTTMenu
-          onResetClick={this.resetGame.bind(this)} />
+          onResetClick={this.resetGame.bind(this)}
+          onResizeClick={this.resizeGame.bind(this)} />
       </main>
     )
   }
