@@ -26,7 +26,7 @@ main {
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
 }
 .TTT-box {
-  background-color: #E7E7E7;
+  background-color: #FFF;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -35,6 +35,15 @@ main {
 .TTT-char {
   font-family: "Varela Round";
   line-height: 100%;
+}
+.TTT-game-over {
+  background-color: #E7E7E7;
+}
+.TTT-winning-square-O {
+  background-color: #c99;
+}
+.TTT-winning-square-X {
+  background-color: #9cc;
 }
 /* small */
 .sm,
@@ -68,12 +77,6 @@ main {
 }
 .lg .TTT-char {
   font-size: 125px;
-}
-.TTT-winning-square-O {
-  background-color: #c99;
-}
-.TTT-winning-square-X {
-  background-color: #9cc;
 }
 
 /* menu items */

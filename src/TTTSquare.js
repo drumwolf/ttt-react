@@ -5,6 +5,8 @@ class TTTSquare extends Component {
     const classList = ['TTT-box'];
     if (this.props.isWinningSquare) {
       classList.push(`TTT-winning-square-${this.props.char}`);
+    } else if (this.props.isGameOver) {
+      classList.push('TTT-game-over');
     }
     return (
       <div className={classList.join(' ')} data-index={this.props.index} onClick={this.props.onSquareClick}>

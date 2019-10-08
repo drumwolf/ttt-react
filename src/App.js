@@ -64,6 +64,7 @@ class App extends Component {
       <main className={this.state.size}>
         <TTTGrid
           clickable={this.state.isUsersTurn && !this.state.winningRow && !this.state.isGridFilled}
+          isGridFilled={this.state.isGridFilled}
           squares={this.state.squares}
           onSquareClick={this.userMoves.bind(this)}
           winningRow={this.state.winningRow} />
