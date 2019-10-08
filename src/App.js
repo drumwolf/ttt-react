@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import TTTController from './TTTController';
 import TTTGrid from './TTTGrid';
+import TTTMenu from './TTTMenu';
 
 class App extends Component {
-  state = {
+  defaultState = {
     isGridFilled: false,
     isUsersTurn: true,
     moveCount: 0,
     squares: Array(9).fill(''),
     winningRow: null
-  }
+  };
+  state = this.defaultState;
   controller = new TTTController();
 
   componentDidUpdate() {
@@ -46,6 +48,10 @@ class App extends Component {
       this.setState({ moveCount, squares, isUsersTurn: false });
     }
   }
+  resetGame(e) {
+    e.preventDefault();
+    this.setState(this.defaultState);
+  }
   render() {
     return (
       <main className="md">
@@ -54,6 +60,8 @@ class App extends Component {
           squares={this.state.squares}
           onSquareClick={this.userMoves.bind(this)}
           winningRow={this.state.winningRow} />
+        <TTTMenu
+          onResetClick={this.resetGame.bind(this)} />
       </main>
     )
   }
