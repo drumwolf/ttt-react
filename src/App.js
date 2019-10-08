@@ -17,18 +17,19 @@ class App extends Component {
   componentDidUpdate() {
     // don't execute if there is a winning row or if grid is filled
     if (!this.state.winningRow && !this.state.isGridFilled) {
+      let winningRow, emptySquareCount;
       // starting with 3rd set of moves, check to see if winning row
       if (this.state.moveCount >= 3) {
-        const winningRow = this.controller.getWinningRow(this.state.squares);
+        winningRow = this.controller.getWinningRow(this.state.squares);
         if (winningRow) { this.setState({ winningRow }) };
       }
       // starting with user's 5th move, check to see if grid is filled
       if (this.state.moveCount === 5) {
-        const emptySquareCount = this.state.squares.filter( char => char === '' ).length;
+        emptySquareCount = this.state.squares.filter( char => char === '' ).length;
         if (emptySquareCount === 0) { this.setState({ isGridFilled: true }) }
       }
       // only if it's the app's turn, and grid isn't filled and there isn't a winning row, should app move
-      if (!this.state.isUsersTurn && !this.state.isGridFilled && !this.state.winningRows) {
+      if (!this.state.isUsersTurn && !winningRow && emptySquareCount !== 0) {
         this.appMoves();
       }
     }
